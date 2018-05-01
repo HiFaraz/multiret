@@ -1,27 +1,39 @@
 # multiret
 JavaScript utility library for Promises with multiple return values
 
-## Multiple return values simplify error handling for multiple asynchronous operations
+## Multiple return values simplify complex error handling
 
-When handling multiple asynchronous business operations, exceptions can make it difficult to determine which promise rejected and what to rollback. Jumping to a catch block without context requires boilerplate to regain the context. Instead a mutiple return Promise would be more convenient, such as:
+Exceptions can make it difficult to determine context and rollback actions when handling multiple asynchronous business operations. Jumping to a `catch` block without context requires unnecessary boilerplate just to regain that context (for example switch statements against custom codes added in the `try` block). Instead a mutiple-return promise would be more convenient. Consider this example:
 
 ```js
-const [err, result] = await promise;
+const [docsErr, docs] = await getDocuments();
 
-if (error) {
-  // process error
+if (docsErr) {
+  // propogate the error, can't do anything without docs
+}
+
+const [imgsErr, imgs] = await getImages(docs);
+
+if (imgsErr) {
+  // log the error and return the docs
+  // (i.e. send a partial result rather than a complete failure)
 } else {
-  // process result
+  // return the docs and images
 }
 ```
 
-This paradigm adopts the strengths of the classic error-first signature while fully embracing `async/await` and promises. It's especially useful for loops where `Promise.all` would not return the full list of errors. Instead, this is possible:
+This paradigm adopts the strengths of the classic error-first signature while fully embracing `async/await` and promises. `try/catch` is an excellent companion to `async/await` and `Promise`, however it lacks nuance when working with complex transactions. It's more like a hammer when working on a chip board. This library is born of painful personal experience from writing the same patterns and boilerplate over and over again in enterprise services.
+
+Multi-return promises are especially useful for loops where `Promise.all` would not return the full list of errors. Instead this is possible:
 
 ```js
 const [errors, results] = await group([
-  promise1,
-  promise2,
+  getPeople(),
+  getCompanies(),
 ])
+
+// ... after asserting no errors, destructure to get individual results:
+const [people, companies] = results;
 ```
 
 ## Installation
