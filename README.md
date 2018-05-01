@@ -64,31 +64,31 @@ Retry an `AsyncFunction` `fn` according to `opts` options.
 
 Options:
 
-#### interval
+#### interval: number
 
 Initial time to wait in milliseconds.
 
 Default: `1000`
 
-#### factor
+#### factor: number
 
 Exponential growth factor for `interval`
 
 Default: `2`
 
-#### forever
+#### forever: boolean
 
 Flag to ignore `limit` and have infinite retries.
 
 Default: `false`
 
-#### limit
+#### limit: number
 
 Maximum number of retries.
 
 Default: `10`
 
-#### couldRetry(err, result)
+#### couldRetry(err, result): function
 
 Test if retry should occur.
 
