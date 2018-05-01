@@ -1,0 +1,32 @@
+{
+  "name": "multiret",
+  "version": "0.1.0",
+  "description": "JavaScript utility library for Promises with multiple return values",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiFaraz/multiret.git"
+  },
+  "keywords": [
+    "async",
+    "multiple return",
+    "promise",
+    "error handling",
+    "utility"
+  ],
+  "author": "Faraz Syed <hello@farazsyed.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HiFaraz/multiret/issues"
+  },
+  "homepage": "https://github.com/HiFaraz/multiret#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1"
+  }
+}
