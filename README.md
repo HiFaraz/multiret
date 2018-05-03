@@ -30,7 +30,7 @@ Multi-return promises are especially useful for loops where `Promise.all` would 
 const [errors, results] = await group([
   getPeople(),
   getCompanies(),
-])
+]);
 
 // ... after asserting no errors, destructure to get individual results:
 const [people, companies] = results;
